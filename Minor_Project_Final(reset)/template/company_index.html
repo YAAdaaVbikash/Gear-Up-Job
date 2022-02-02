@@ -1,0 +1,190 @@
+{% load static %}
+{% autoescape off %}
+
+<section class="breadcrumbs">
+  <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Company</h2>
+      <ol>
+        <li>{{user.company.company_name}}</li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+<div class="row">
+  <div class="col-md-3 order-md-1 mb-2">
+
+    <header id="header">
+      <div class="profile">
+        {% if user.company.profile_pic %}
+        <img src="{{ user.company.profile_pic.url }}" alt="cannot load" class="img-fluid rounded-circle">
+        {% else %}
+        <img src="{% static "images/Thumbnail.jpg" %}" alt="can not load" class="img-fluid rounded-circle">
+        {% endif %}
+        <div class="section-title">
+          <h3 class="">{{user.company.company_name}}</h3>
+
+        </div>
+
+
+        <div class="company-rating">
+
+          {% if rating <= 0.9 %}
+
+          <span class="star black">&#9733;</span>
+          <span class="star black">&#9733;</span>
+          <span class="star black">&#9733;</span>
+          <span class="star black">&#9733;</span>
+          <span class="star black">&#9733;</span>
+
+          {% elif 1.0 <= rating and rating <= 1.5 %}
+
+          <span class="star yellow">&#9733;</span>
+          <span class="star black">&#9733;</span>
+          <span class="star black">&#9733;</span>
+          <span class="star black">&#9733;</span>
+          <span class="star black">&#9733;</span>
+
+          {% elif 1.6 <= rating and rating <= 2.5 %}
+          <span class="star yellow">&#9733;</span>
+          <span class="star yellow">&#9733;</span>
+          <span class="star black">&#9733;</span>
+          <span class="star black">&#9733;</span>
+          <span class="star black">&#9733;</span>
+
+
+          {% elif 2.6 <= rating and  rating <= 3.5 %}
+          <span class="star yellow">&#9733;</span>
+          <span class="star yellow">&#9733;</span>
+          <span class="star yellow">&#9733;</span>
+          <span class="star black">&#9733;</span>
+          <span class="star black">&#9733;</span>
+
+
+          {% elif 3.6 <= rating and  rating <= 4.5 %}
+
+          <span class="star yellow">&#9733;</span>
+          <span class="star yellow">&#9733;</span>
+          <span class="star yellow">&#9733;</span>
+          <span class="star yellow">&#9733;</span>
+          <span class="star black">&#9733;</span>
+          {% else %}
+
+          <span class="star yellow">&#9733;</span>
+          <span class="star yellow">&#9733;</span>
+          <span class="star yellow">&#9733;</span>
+          <span class="star yellow">&#9733;</span>
+          <span class="star yellow">&#9733;</span>
+          {% endif %}
+
+          <h6 style="margin-left:50px;">Rating:<strong>{{company_detail.rating|floatformat:1}}</strong></h6>
+          <h6 style="margin-left:70px;"><strong>{{company_detail.number_of_rating}}</strong> <i style="font-size:12px;margin-left:7px;color:#747070" class="fas fa-user"></i></h6>
+        </div>
+        <a href="{% url 'gearupjob:company_update' user.company.pk %}" class="nav-link scrollto active float-right"><i class="bx bx-home"></i> <span>Edit</span></a>
+
+
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="#hero1" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
+          <li><a href="#job" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Job</span></a></li>
+
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </header>
+
+  </div>
+
+  <div class="col-md-9 order-md-2">
+    <section id="hero1" class="d-flex flex-column justify-content-center align-items-center"
+      style="background-image: {% if user.company.background_image %} url('{{ user.company.background_image.url }}') {% else %} url('{% static 'images/company.jpg' %}'){% endif %};">
+    </section>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-3 order-md-1 mb-2">
+  </div>
+
+  <div class="col-md-9 order-md-2" <div class="row">
+    <div class="col-md-3 order-md-1 mb-2">
+
+    </div>
+    <div class="col-md-9 order-md-2">
+      <hr class="my-4">
+      <div class="section-title ">
+        <h2 id="about"><strong>About Us</strong></h2>
+      </div>
+      <div class="">
+        <p style="text-allign:left;">{{user.company.description}}</p>
+
+      </div>
+      <hr class="my-4">
+      <div class="section-title ">
+        <h2 id="job"><strong>My Jobs</strong></h2>
+      </div>
+
+      {% for job in user.company.jobs.all %}
+      <div class="info-wrap">
+
+        <div class="col-md-12 ftco-animate">
+
+          <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
+
+            <div class="mb-4 mb-md-0 mr-5">
+              <div class="job-post-item-header d-flex align-items-center">
+                <h2 class="mr-3 text-black h3">{{job.title}}</h2>
+                <div class="badge-wrap">
+                  {% if job.job_type == 'Full Time' %}
+                  <span class="bg-warning text-white badge py-2 px-3">Full Time</span>
+                  {% else %}
+                  {% if job.job_type == 'Freelance' %}
+                  <span class="bg-info text-white badge py-2 px-3">Freelance</span>
+                  {% else %}
+                  {% if job.job_type == 'Internship' %}
+                  <span class="bg-secondary text-white badge py-2 px-3">Internship</span>
+                  {% else %}
+                  {% if job.job_type == 'Temporary' %}
+                  <span class="bg-danger text-white badge py-2 px-3">Temporary</span>
+                  {% else %}
+                  <span class="bg-primary text-white badge py-2 px-3">Part Time</span>
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                  {% endif %}
+                </div>
+              </div>
+              <div class="job-post-item-body d-block d-md-flex">
+                <div class="mr-3"><span class="icon-layers"></span> <a href="{% url 'gearupjob:index'%}">{{user.company.company_name}}</a></div>
+                <div><span class="icon-map-marker"></span> <span>{{user.company.address}}</span></div>
+              </div>
+            </div>
+
+            <div class="ml-auto d-flex">
+              <div class="badge-wrap">
+                <span class="bg-success text-white badge py-2 px-3">{{job.view}} Views</span>
+              </div>
+              <a href="{% url 'gearupjob:job_single' job.pk %}" class="btn btn-primary py-2 mr-1">Details</a>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4">
+      {% endfor %}
+
+    </div>
+
+  </div>
+</div>
+
+</div>
+{% endautoescape %}

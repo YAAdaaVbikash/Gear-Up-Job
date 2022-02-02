@@ -1,0 +1,376 @@
+{% load static %}
+
+<div class="s002" style="background: url('{% static 'images/Search.png' %}');background-attachment: fixed;">
+  <form method="GET" action="{% url 'gearupjob:search' %}" >
+    <div class="inner-form">
+      <div class="input-field first-wrap">
+        <div class="icon-wrap">
+          <i class="fas fa-search" style="font-size:14px;margin-right:5px;"></i>
+        </div>
+        <input name="query" id="query" class="form-control mr-sm-2" type="search" placeholder="Search Anything..." aria-label="Search">
+      </div>
+      <div class="input-field first-wrap">
+        <div class="icon-wrap">
+          <i class="fa fa-map-marker" aria-hidden="true" style="font-size:17px;margin-right:0px;"></i>
+        </div>
+        <input name="query1" id="query1" class="form-control mr-sm-2" type="search" placeholder="Loation..." aria-label="Search">
+      </div>
+      <div class="input-field first-wrap">
+        <div class="icon-wrap">
+          <i class="fa fa-list-alt" aria-hidden="true" style="font-size:15px;margin-right:5px;"></i>
+
+        </div>
+        <input name="query2" id="query2" list="Catagories" class="form-control mr-sm-2" type="search" placeholder="Choose a Category..." aria-label="Search">
+        <datalist id="Catagories">
+          {% for catagory in categories %}
+          <option value="{{catagory}}">
+
+          {% endfor %}
+        </datalist>
+
+      </div>
+
+      <div class="input-field fifth-wrap">
+        <button class="btn-search" type="submit">SEARCH</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container-fluid padding">
+  <div class="row welcom text-center">
+    <div class="col-12">
+      <h1 class="display-4">Find Jobs Here.</h1>
+    </div>
+    <hr class="light-100">
+    <div class="col-12">
+      <p class="lead">Welcom to the GearUpJob!
+        Find best company and get jobs faster and easily from here. </p>
+
+    </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <hr class="my-4">
+</div>
+
+<div class="jumbotron" style="border-radius: 20px">
+  <div class="container-fluid padding">
+    <div class="row text-center padding">
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <i class="fas fa">J</i>
+        <h3>JOBS</h3>
+        <p>Find all jobs.</p>
+        <a href="{% url 'gearupjob:companies' %}"><button type="button" class="btn btn-outline-success btn-lg">Jobs</button></a>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <i class="fas fa">C</i>
+        <h3>Company</h3>
+        <p>Here are some Top Companies.</p>
+        <a href="{% url 'gearupjob:companies' %}"><button type="button" class="btn btn-outline-success btn-lg">Company</button></a>
+      </div>
+      <div class="col-sm-12 col-md-4">
+        <i class="fas fa">A</i>
+        <h3>Connect</h3>
+        <p>Connect with us</p>
+        <a href="#"><button type="button" class="btn btn-outline-success btn-lg">Join</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="my-4">
+<div id='job' class="section-title ">
+  <h2><strong>Recomended Job</strong></h2>
+</div>
+<div class="container">
+
+
+  {% if jobs %}
+  {% for job in jobs %}
+  {% if job.Company_Username.company_username.is_active %}
+  <div class="referenceblock">
+    <div class="info-wrap">
+      <div class="col-md-12 ftco-animate">
+        <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
+          <div class="mb-4 mb-md-0 mr-5">
+            <div class="job-post-item-header d-flex align-items-center">
+              <h2 class="mr-3 text-black h3">{{job.title}}</h2>
+              <div class="badge-wrap">
+                {% if job.job_type == 'Full Time' %}
+                <span class="bg-warning text-white badge py-2 px-3">Full Time</span>
+                {% else %}
+                {% if job.job_type == 'Freelance' %}
+                <span class="bg-info text-white badge py-2 px-3">Freelance</span>
+                {% else %}
+                {% if job.job_type == 'Internship' %}
+                <span class="bg-secondary text-white badge py-2 px-3">Internship</span>
+                {% else %}
+                {% if job.job_type == 'Temporary' %}
+                <span class="bg-danger text-white badge py-2 px-3">Temporary</span>
+                {% else %}
+                <span class="bg-primary text-white badge py-2 px-3">Part Time</span>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="job-post-item-body d-block d-md-flex">
+              <div class="mr-3"><span class="icon-layers"></span> <a href="{% url 'gearupjob:company_detail' job.Company_Username.pk %}">{{job.Company_Username.company_name}}</a></div>
+              <div><span class="m-2"><span class="icon-room mr-2"></span><span>{{job.Company_Username.address}}</span></div>
+            </div>
+          </div>
+
+          <div class="ml-auto d-flex">
+            <div class="badge-wrap">
+              <span class="bg-success text-white badge py-2 px-3">{{job.view}} Views</span>
+            </div>
+            <a href="{% url 'gearupjob:job_single' job.pk %}" class="btn btn-primary py-2 mr-1">Detail</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4">
+
+  </div>
+
+  {% endif %}
+  {% endfor %}
+  <div class="text-center">
+    <button id="more" class="btn btn-secondary btn-sm" onclick="showmore()"><i class="bi bi-arrow-down-short"></i>show more</button>
+    <button id="less" class="btn btn-secondary btn-sm" onclick="showless()"><i class="bi bi-arrow-up-short"></i>show less</button>
+  </div>
+</div>
+<div class="section-title ">
+  <hr class="my-4">
+  <h2><strong>Top Jobs</strong></h2>
+</div>
+
+<div class="container">
+  {% for job in topjob %}
+  {% if job.Company_Username.company_username.is_active %}
+  <div class="referenceblock1">
+    <div class="info-wrap">
+      <div class="col-md-12 ftco-animate">
+
+        <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
+
+          <div class="mb-4 mb-md-0 mr-5">
+            <div class="job-post-item-header d-flex align-items-center">
+              <h2 class="mr-3 text-black h3">{{job.title}}</h2>
+              <div class="badge-wrap">
+                {% if job.job_type == 'Full Time' %}
+                <span class="bg-warning text-white badge py-2 px-3">Full Time</span>
+                {% else %}
+                {% if job.job_type == 'Freelance' %}
+                <span class="bg-info text-white badge py-2 px-3">Freelance</span>
+                {% else %}
+                {% if job.job_type == 'Internship' %}
+                <span class="bg-secondary text-white badge py-2 px-3">Internship</span>
+                {% else %}
+                {% if job.job_type == 'Temporary' %}
+                <span class="bg-danger text-white badge py-2 px-3">Temporary</span>
+                {% else %}
+                <span class="bg-primary text-white badge py-2 px-3">Part Time</span>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% endif %}
+              </div>
+            </div>
+            <div class="job-post-item-body d-block d-md-flex">
+              <div class="mr-3"><span class="icon-layers"></span> <a href="{% url 'gearupjob:company_detail' job.Company_Username.pk %}">{{job.Company_Username.company_name}}</a></div>
+              <div><span class="m-2"><span class="icon-room mr-2"></span><span>{{job.Company_Username.address}}</span></div>
+            </div>
+          </div>
+
+          <div class="ml-auto d-flex">
+            <div class="badge-wrap">
+              <span class="bg-success text-white badge py-2 px-3">{{job.view}} Views</span>
+            </div>
+            <a href="{% url 'gearupjob:job_single' job.pk %}" class="btn btn-primary py-2 mr-1">Detail</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4">
+  </div>
+  {% endif %}
+  {% endfor %}
+  <div class="text-center">
+    <button id="more1" class="btn btn-secondary btn-sm" onclick="showmore1()"><i class="bi bi-arrow-down-short"></i>show more</button>
+    <button id="less1" class="btn btn-secondary btn-sm" onclick="showless1()"><i class="bi bi-arrow-up-short"></i>show less</button>
+  </div>
+  {% else %}
+
+  <h3>No Job available!</h3>
+
+  {% endif %}
+
+</div>
+<hr class="my-4">
+<div id="companies" id='job' class="section-title ">
+  <h2><strong>Top Companies</strong></h2>
+</div>
+<div class="container">
+  <div class="row">
+    {% for company in topcompanay %}
+    {% if company.company_username.is_active %}
+    <div class="col-md-4">
+      <div class="referenceblock2">
+        <div class="card mb-4 shadow-sm" height="450">
+          {% if company.profile_pic %}
+          <img src="{{ company.profile_pic.url }}" alt="cannot load" height="225" width="100%">
+          {% else %}
+          <img src="{% static "images/Thumbnail.jpg" %}" alt="can not load" height="225" width="100%">
+          {% endif %}
+          <div id="description" class="card-body">
+            <h3>{{company.company_name}}</h3>
+
+            {% if company.description|length > 20 %}
+            <p>{{ company.description|safe|truncatechars:"100" }}<span>...</span>
+              <a href="{% url 'gearupjob:company_detail' company.pk %}">read more</a>
+            </p>
+            {% else %}
+            <p>{{ company.description}}</p>
+            {% endif %}
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <!--      <button type="button" class="btn btn-sm btn-outline-success">View</button> -->
+                <p><a class="btn btn-sm btn-outline-success" href="{% url 'gearupjob:company_detail' company.pk %}" role="button">view</a></p>
+
+              </div>
+              <small class="text-muted">{{company.jobs.all.count}} Jobs</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+  </div>
+  <div class="text-center">
+    <button id="more2" class="btn btn-secondary btn-sm" onclick="showmore2()"><i class="bi bi-arrow-down-short"></i>show more</button>
+    <button id="less2" class="btn btn-secondary btn-sm" onclick="showless2()"><i class="bi bi-arrow-up-short"></i>show less</button>
+  </div>
+</div>
+<script type="text/javascript">
+  //show 4 elements at beginning
+  var nblock = 4;
+  //how much elements should be added/removed
+  var add_remove = 5;
+
+  $(".referenceblock:gt(" + nblock + ")").hide();
+  $("#less").hide();
+  if ((nblock + 1) >= $('.referenceblock').length)
+    $("#more").hide();
+
+  function showmore() {
+
+    if ((nblock + 1) < $('.referenceblock').length)
+      nblock = nblock + add_remove;
+
+    $(".referenceblock").fadeIn();
+    $(".referenceblock:gt(" + nblock + ")").hide();
+    $("#less").show();
+    if ((nblock + 1) > $('.referenceblock').length)
+      $("#more").hide();
+  };
+
+  function showless() {
+
+    if (nblock > add_remove) {
+      nblock = nblock - add_remove;
+    }
+
+    $(".referenceblock:gt(" + nblock + ")").fadeOut();
+    if ((nblock + 1) < $('.referenceblock').length)
+      $("#more").show();
+    if ((nblock + 1) < 6)
+      $("#less").hide();
+  };
+  //show 4 elements at beginning
+  var nblock1 = 4;
+  //how much elements should be added/removed
+  var add_remove1 = 5;
+
+  $(".referenceblock1:gt(" + nblock1 + ")").hide();
+  $("#less1").hide();
+  if ((nblock1 + 1) >= $('.referenceblock1').length)
+    $("#more1").hide();
+
+  function showmore1() {
+
+    if ((nblock1 + 1) < $('.referenceblock1').length)
+      nblock1 = nblock1 + add_remove1;
+
+    $(".referenceblock1").fadeIn();
+    $(".referenceblock1:gt(" + nblock1 + ")").hide();
+    $("#less1").show();
+    if ((nblock1 + 1) >= $('.referenceblock1').length)
+      $("#more1").hide();
+  };
+
+  function showless1() {
+
+    if (nblock1 > add_remove1) {
+      nblock1 = nblock1 - add_remove1;
+    }
+
+    $(".referenceblock1:gt(" + nblock1 + ")").fadeOut();
+    if ((nblock1 + 1) < $('.referenceblock1').length)
+      $("#more1").show();
+    if ((nblock1 + 1) < 6)
+      $("#less1").hide();
+  };
+
+  //show 4 elements at beginning
+  var nblock2 = 5;
+  //how much elements should be added/removed
+  var add_remove2 = 6;
+
+  $(".referenceblock2:gt(" + nblock2 + ")").hide();
+  $("#less2").hide();
+  if ((nblock2 + 1) >= $('.referenceblock2').length)
+    $("#more2").hide();
+
+  function showmore2() {
+
+    if ((nblock2 + 1) < $('.referenceblock2').length)
+      nblock2 = nblock2 + add_remove2;
+
+    $(".referenceblock2").fadeIn();
+    $(".referenceblock2:gt(" + nblock2 + ")").hide();
+    $("#less2").show();
+    if ((nblock2 + 1) > $('.referenceblock2').length)
+      $("#more2").hide();
+  };
+
+  function showless2() {
+
+    if (nblock2 > add_remove2) {
+      nblock2 = nblock2 - add_remove2;
+    }
+
+    $(".referenceblock2:gt(" + nblock2 + ")").fadeOut();
+    if ((nblock2 + 1) < $('.referenceblock2').length)
+      $("#more2").show();
+    if ((nblock2 + 1) < 7)
+      $("#less2").hide();
+  };
+  //show 4 elements at beginning
+
+  $(document).ready(function() {
+
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+      removeItemButton: true,
+      maxItemCount: 5,
+      searchResultLimit: 5,
+      renderChoiceLimit: 5
+    });
+
+
+  });
+</script>

@@ -1,0 +1,373 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+{% block body_block %}
+<!-- HOME -->
+{% autoescape off %}
+
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('{% static 'images/hero_1.jpg' %}');" id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="text-white font-weight-bold">{{ q.title }}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="site-section">
+  <div class="container">
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-8 mb-4 mb-lg-0">
+        <div class="d-flex align-items-center">
+          <div class="border p-2 d-inline-block mr-3 rounded">
+            {% if q.Company_Username.profile_pic %}
+            <img class="circular_landscape" src="{{ q.Company_Username.profile_pic.url }}" width="100" height="90" alt="can not load">
+            {% else %}
+            <i id='ip' class="fas fa-user"></i>
+            {% endif %}
+
+          </div>
+          <div>
+            <h2>{{ q.title }}</h2>
+            <div>
+              <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>{{ q.Company_Username.company_name }}</span>
+              <span class="m-2"><span class="icon-room mr-2"></span>{{ q.job_location }}</span>
+              <span class="m-2"><span class="icon-clock-o mr-2"></span>
+
+                {% if q.job_type == 'Full Time' %}
+                <span class="bg-warning text-white badge py-2 px-3">Full Time</span>
+                {% else %}
+                {% if q.job_type == 'Freelance' %}
+                <span class="bg-info text-white badge py-2 px-3">Freelance</span>
+                {% else %}
+                {% if q.job_type == 'Internship' %}
+                <span class="bg-secondary text-white badge py-2 px-3">Internship</span>
+                {% else %}
+                {% if q.job_type == 'Temporary' %}
+                <span class="bg-danger text-white badge py-2 px-3">Temporary</span>
+                {% else %}
+                <span class="bg-primary text-white badge py-2 px-3">Part Time</span>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+                {% endif %}
+
+
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="row">
+          {% if company_name %}
+          <div class="col-4">
+            <a href="{% url 'gearupjob:edit_job' q.pk %}" class="btn btn-block btn-warning btn-md">Edit</a>
+          </div>
+
+          <!-- Button to Open the Modal -->
+          <button id="myBtn" type="button" class="btn btn-danger " data-toggle="modal" data-target="#myModal">Delete</button>
+          {% include 'job_confirm_delete.html' %}
+          <!-- The Modal -->
+          <div class="modal fade" id="myModal" aria-hidden="true" data-backdrop="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body text-center mb-5">
+                  <img src="{% static 'images/right.png' %}" height="50">
+                  <h1>Are You Sure?</h1>
+                  <p>Do you really want to delete these records? This process cannot be undone.</p>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-secondary btn-lg mr-2 rounded-lg" data-dismiss="modal">Cancel</button>
+                    <a href="{% url 'gearupjob:delete_job' q.pk %}" type="button" class="btn btn-danger btn-lg rounded-lg">Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+          <!--  <div id="myModal" class="modal fade" data-backdrop="true">
+                    	<div class="modal-dialog modal-confirm">
+                    		<div class="modal-content">
+                    			<div class="modal-header flex-column">
+                    				<div class="icon-box">
+                    					<i class="material-icons">&#xE5CD;</i>
+                    				</div>
+                    				<h4 class="modal-title w-100">Are you sure?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    			</div>
+                    			<div class="modal-body">
+                    				<p>Do you really want to delete these records? This process cannot be undone.</p>
+                    			</div>
+                    			<div class="modal-footer justify-content-center">
+                    				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    				<button type="button" class="btn btn-danger">Delete</button>
+                    			</div>
+                    		</div>
+                    	</div>
+                    </div>
+
+                    <div class="modal delete" id="myModal1"  data-backdrop="false">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <!-- Modal Header -->
+
+          <!--       <div class="modal-header delete">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                          </div>
+                          <!-- Modal body -->
+          <!--        <div class="modal-body text-center mb-5">
+                            <div class="img-delete">
+                                <img src="{% static 'images/right.png' %}">
+                            </div>
+
+                            <h1>Are You Sure?</h1>
+                            <p>Do you really want to delete these records? This process cannot be undone.</p>
+                            <div class="btn-group">
+                              <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+
+                              <a href="{% url 'gearupjob:delete_job' q.pk %}" type="button" class="btn btn-danger " >Delete</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="false">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                          </div>
+                          <div class="modal-body"> Do you really want to Delete? </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <a href="{% url 'accounts:logout' %}" id="delete" class="btn btn-danger">Delete</a> </div>
+                        </div>
+                      </div>
+                    </div>
+                    -->
+          {% else %}
+          <div class="col-6">
+            <a href="{{q.Company_Username.url}}" class="btn btn-block btn-primary btn-md">Apply Now</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="mb-5">
+          <figure class="mb-5">
+            {% if q.image %}
+            <img src="{{ q.image.url }}" alt="can not load" height="500" width="100%">
+            {% else %}
+            <img src="{% static "images/Thumbnail.jpg" %}" alt="can not load" height="500" width="100%">
+            {% endif %}
+          </figure>
+          <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"><i class="fas fa-align-left"></i></span>Job
+            Description</h3>
+          <p>{{ q.description }}</p>
+        </div>
+        <div class="mb-5">
+          <h3 class="h5 d-flex align-items-center mb-4 text-primary "><span><i class="fas fa-rocket"></i></span>
+            <p class="m"></p>Responsibilities
+          </h3>
+          <ul class="list-unstyled m-0 p-0">
+            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"><i class="fas fa-check_circle"></i></span><span>{{ q.responsibilities }}</span>
+            </li>
+
+
+          </ul>
+        </div>
+
+        <div class="mb-5">
+          <h3 class="h5 d-flex align-items-center mb-4 text-primary "><span> <i class="fas fa-book"></i></span>
+            <p class="m"></p>Experience
+          </h3>
+          <ul class="list-unstyled m-0 p-0">
+            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>{{ q.experience }}</span>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+      <div class="col-lg-4">
+        <div class="bg-light p-3 border rounded mb-4">
+          <h3 class="text-success  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
+          <ul class="list-unstyled pl-3 mb-0">
+            <li class="mb-2"><strong class="text-black">Published
+                on:</strong> {{ q.published_on }}
+            </li>
+            <li class="mb-2"><strong class="text-black">Category:</strong> {{ q.job_category }}</li>
+            {% if q.vacancy %}
+            <li class="mb-2"><strong class="text-black">Vacancy:</strong> {{ q.vacancy }}</li>
+            {% else %}
+            <li class="mb-2"><strong class="text-black">Vacancy:</strong> Not mention</li>
+            {% endif %}
+            <li class="mb-2"><strong class="text-black">Employment
+                Status:</strong> {{ q.job_type }}</li>
+            <li class="mb-2"><strong class="text-black">Experience:</strong> {{ q.experience }}</li>
+            <li class="mb-2"><strong class="text-black">Job Location:</strong> {{ q.job_location }}</li>
+            <li class="mb-2"><strong class="text-black">Salary:</strong>{% if q.salary %} {{ q.Salary }} {% else %} As per Company Rule {% endif %}</li>
+            <li class="mb-2"><strong class="text-black">Gender:</strong> {{ q.gender }}</li>
+            <li class="mb-2"><strong class="text-black">Application
+                Deadline:</strong> {{ q.application_deadline }}</li>
+          </ul>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="my-4">
+
+<div class="container">
+  {% if user.seeker.is_jobseeker %}
+  <h2>Related Jobs:</h2>
+  {% for job in jobs %}
+  <div class="info-wrap">
+
+    <div class="col-md-12 ftco-animate">
+
+      <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
+
+        <div class="mb-4 mb-md-0 mr-5">
+          <div class="job-post-item-header d-flex align-items-center">
+            <h2 class="mr-3 text-black h3">{{job.title}}</h2>
+            <div class="badge-wrap">
+              {% if job.job_type == 'Full Time' %}
+              <span class="bg-warning text-white badge py-2 px-3">Full Time</span>
+              {% else %}
+              {% if job.job_type == 'Freelance' %}
+              <span class="bg-info text-white badge py-2 px-3">Freelance</span>
+              {% else %}
+              {% if job.job_type == 'Internship' %}
+              <span class="bg-secondary text-white badge py-2 px-3">Internship</span>
+              {% else %}
+              {% if job.job_type == 'Temporary' %}
+              <span class="bg-danger text-white badge py-2 px-3">Temporary</span>
+              {% else %}
+              <span class="bg-primary text-white badge py-2 px-3">Part Time</span>
+              {% endif %}
+              {% endif %}
+              {% endif %}
+              {% endif %}
+            </div>
+          </div>
+          <div class="job-post-item-body d-block d-md-flex">
+            <div class="mr-3"><span class="icon-layers"></span> <a href="{% url 'gearupjob:index'%}">{{user.company.company_name}}</a></div>
+            <div><span class="icon-map-marker"></span> <span>{{user.company.address}}</span></div>
+          </div>
+        </div>
+
+        <div class="ml-auto d-flex">
+          <div class="badge-wrap">
+            <span class="bg-success text-white badge py-2 px-3">{{job.view}} Views</span>
+          </div>
+          <a href="{% url 'gearupjob:job_single' job.pk %}" class="btn btn-primary py-2 mr-1">Details</a>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="my-4">
+  {% endfor %}
+  {% else %}
+  <h2>Other Jobs:</h2>
+  {% for job in user.company.jobs.all %}
+
+  <div class="info-wrap">
+
+    <div class="col-md-12 ftco-animate">
+
+      <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
+
+        <div class="mb-4 mb-md-0 mr-5">
+          <div class="job-post-item-header d-flex align-items-center">
+            <h2 class="mr-3 text-black h3">{{job.title}}</h2>
+            <div class="badge-wrap">
+              <span class="bg-primary text-white badge py-2 px-3">{{job.job_type}}</span>
+            </div>
+          </div>
+          <div class="job-post-item-body d-block d-md-flex">
+            <div class="mr-3"><span class="icon-layers"></span> <a href="{% url 'gearupjob:company_detail' job.Company_Username.pk %}">{{job.Company_Username.company_name}}</a></div>
+            <div><span class="m-2"><span class="icon-room mr-2"></span><span>{{job.Company_Username.address}}</span></div>
+          </div>
+        </div>
+
+        <div class="ml-auto d-flex">
+          <div class="badge-wrap">
+            <span class="bg-success text-white badge py-2 px-3">{{job.view}} Views</span>
+          </div>
+          <a href="{% url 'gearupjob:job_single' job.pk %}" class="btn btn-primary py-2 mr-1">Detail</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="my-4">
+  {% endfor %}
+
+  {% endif %}
+
+</div>
+
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', () => {
+    var buttons = document.querySelectorAll("[data-target='#confirmModal']");
+    for (const button of buttons) {
+      button.addEventListener("click", function(event) {
+        // find the modal and add the caller-id as an attribute
+        var modal = document.getElementById("confirmModal");
+        modal.setAttribute("caller-id", this.getAttribute("id"));
+
+        // extract texts from calling element and replace the modals texts with it
+        if ("message" in this.dataset) {
+          document.getElementById("modal-message").innerHTML = this.dataset.message;
+        };
+        if ("buttontext" in this.dataset) {
+          document.getElementById("confirmButtonModal").innerHTML = this.dataset.buttontext;
+        };
+      })
+    }
+
+    document.getElementById("confirmButtonModal").onclick = () => {
+      // when the Confirm Button in the modal is clicked
+      var button_clicked = event.target
+      var caller_id = button_clicked.closest("#confirmModal").getAttribute("caller-id");
+      var caller = document.getElementById(caller_id);
+      // open the url that was specified for the caller
+      window.location = caller.getAttribute("href");
+    };
+  });
+  $(document).ready(function() {
+        $("#myBtn").click(function() {
+          $("#myModal").modal({
+            backdrop: true
+          });
+        });
+</script>
+</body>
+{% endautoescape %}
+{% endblock %}

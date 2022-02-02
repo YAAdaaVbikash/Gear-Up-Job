@@ -1,0 +1,130 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block body_block %}
+<section class="breadcrumbs">
+  <div class="container">
+
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Jobs</h2>
+      <ol>
+        <li><a href="{% url 'gearupjob:index' %}"><strong>Home</strong></a></li>
+        <li>Add Jobs</li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('{% static 'images/job.jpg' %}');" id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="text-white font-weight-bold">Add Jobs</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="my-4">
+<div class="container">
+  <div class="col-md-9 order-md-2">
+    <div class=" text-center info-wrap">
+      <form class="needs-validation padding-all" method="POST" action="{% url 'gearupjob:add_job' %}">
+        {% csrf_token %}
+        <h4 class="text-center">Create Job:</h4>
+        <hr class="mb-4">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="title"><strong>Title</strong></label>
+            {{form.title}}
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="jobtype"><strong>Job type</strong></label>
+            {{form.job_type}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="address"><strong>Location</strong></label>
+            {{form.job_location}}
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="application-deadline"><strong>Application deadline</strong></label>
+            {{form.application_deadline}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="vacancy"><strong>Vacancy</strong> <span class="text-muted">(Optional)</span></label>
+            {{form.vacancy}}
+          </div>
+          <div class="col-md-5 mb-3">
+            <label for="gender"><strong>Gender</strong></label>
+            {{form.gender}}
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="experience"><strong>Experience</strong></label>
+            {{form.experience}}
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="application-deadline"><strong>Salary</strong> <span class="text-muted">(Optional)</span></label>
+            {{form.salary}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label for="responsibility"><strong>Responsibility</strong></label>
+            {{form.responsibilities}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label><strong>Responsibility 1</strong></label>
+            {{form.responsibilities1}}
+          </div>
+          <div class="col-md-6 mb-3">
+            <label><strong>Responsibility 2</strong> <span class="text-muted">(Optional)</span></label>
+            {{form.responsibilities2}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label><strong>Responsibility 3</strong> <span class="text-muted">(Optional)</span></label>
+            {{form.responsibilities3}}
+          </div>
+          <div class="col-md-6 mb-3">
+            <label><strong>Responsibility 4</strong> <span class="text-muted">(Optional)</span></label>
+            {{form.responsibilities4}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label><strong>Responsibility 5</strong> <span class="text-muted">(Optional)</span></label>
+            {{form.responsibilities5}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3">
+            <label for="description"><strong>Description</strong></label>
+            {{form.description}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="form-group">
+              <label for="Image"><strong>Image</strong> <span class="text-muted">(Optional)</span></label>
+              {{form.image}}
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+
+        <button type="submit">Post</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

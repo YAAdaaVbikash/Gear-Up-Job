@@ -1,0 +1,95 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block body_block %}
+<h1>Hello</h1>
+<h1>fa fa-star-half-full</h1>
+<i class="fa fa-star" aria-hidden="true"></i>
+<i class="fa fa-star" aria-hidden="true"></i>
+
+
+{% if 0.0 <= rating <= 0.7 %}
+<i class="fa fa-star-half-full" style="font-size:48px;color:yellow"></i>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+{% endif %}
+
+{% if 0.7 <= rating and rating <= 1.2 %}
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+{% endif %}
+
+{% if 1.2 <= rating and rating <= 1.7 %}
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<i class="fa fa-star-half-full" style="font-size:48px;color:yellow"></i>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+{% endif %}
+
+
+{% if 1.7 <= rating and  rating <= 2.2 %}
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+{% endif %}
+
+{% if 2.2 <= rating and rating <= 2.7 %}
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<i class="fa fa-star-half-full" style="font-size:48px;color:yellow"></i>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+{% endif %}
+
+{% if 2.7 <= rating and rating <= 3.2 %}
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+{% endif %}
+
+{% if 3.2 <= rating and rating <= 3.7 %}
+<span class="fa fa-star checked" style="font-size:20px;color:yellow;padding:0px;margin:0px;"></span>
+<span class="fa fa-star checked" style="font-size:20px;color:yellow;padding:0px;margin:0px;"></span>
+<span class="fa fa-star checked" style="font-size:20px;color:yellow;padding:0px;margin:0px;"></span>
+<span class="fa fa-star-half-full" style="font-size:20px;color:yellow;padding:0px;margin:0px;"></span>
+<span class="fa fa-star checked" style="font-size:20px;color:black;padding:0px;margin:0px;"></span>
+{% endif %}
+
+
+{% if 3.7 <= rating and rating <= 4.2 %}
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:black"></span>
+{% endif %}
+
+{% if 4.2 <= rating and rating <= 4.7 %}
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<i class="fa fa-star-half-full" style="font-size:48px;color:yellow"></i>
+{% endif %}
+{% if 4.7 <= rating and rating <= 5.0 %}
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+<span class="fa fa-star checked" style="font-size:48px;color:yellow"></span>
+{% endif %}
+
+
+
+
+
+{% endblock %}

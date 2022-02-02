@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% for job in user_detail.company.jobs.all %}
+<div class="col-md-12 ftco-animate">
+
+  <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
+
+    <div class="mb-4 mb-md-0 mr-5">
+      <div class="job-post-item-header d-flex align-items-center">
+        <h2 class="mr-3 text-black h3">{{job.title}}</h2>
+        <div class="badge-wrap">
+          <span class="bg-primary text-white badge py-2 px-3">{{job.job_type}}</span>
+        </div>
+      </div>
+      <div class="job-post-item-body d-block d-md-flex">
+        <div class="mr-3"><span class="icon-layers"></span> <a href="{% url 'gearupjob:company' job.Company_name.id %}">{{job.Company_name.company_name}}</a></div>
+        <div><span class="icon-map-marker"></span> <span>{{job.Company_name.address}}</span></div>
+      </div>
+    </div>
+
+    <div class="ml-auto d-flex">
+      <div class="badge-wrap">
+        <span class="bg-secondary text-white badge py-2 px-3">Views</span>
+      </div>
+      <a href="{% url 'gearupjob:job_single' job.pk %}" class="btn btn-primary py-2 mr-1">Details</a>
+
+
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

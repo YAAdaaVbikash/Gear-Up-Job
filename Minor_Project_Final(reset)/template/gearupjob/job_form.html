@@ -1,0 +1,182 @@
+{% extends 'accounts/base.html' %}
+{% load static %}
+{% block body_block %}
+<div class="container">
+  <div class="row">
+    <div class="col out">
+    </div>
+    <div class="col-8">
+      <div class="info-wrap">
+        <div id='job' class="section-title " style="padding-top:3rem;">
+          {% if not form.instance.pk %}
+          <h2><strong>Create Job</strong></h2>
+          {% else %}
+          <h2><strong>Edit Job</strong></h2>
+          {% endif %}
+        </div>
+
+        <form class="needs-validation padding-all" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <hr class="mb-4">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+
+              {% if form.title.errors %}
+              <small class="form-text text-danger">{{form.title.errors}}</small>
+              {% endif %}
+
+              <label for="title"><strong>Title</strong></label>
+
+              {{form.title}}
+            </div>
+            <div class="col-md-5 mb-3">
+
+              {% if form.job_type.errors %}
+              <small class="form-text text-danger">{{form.job_type.errors}}</small>
+              {% endif %}
+
+              <label for="jobtype"><strong>Job type</strong></label>
+              {{form.job_type}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+
+              {% if form.job_category.errors %}
+              <small class="form-text text-danger">{{form.job_category.errors}}</small>
+              {% endif %}
+
+              <label for="vacancy"><strong>Category</strong></label>
+              {{form.job_category}}
+            </div>
+            <div class="col-md-5 mb-3">
+
+              {% if form.gender.errors %}
+              <small class="form-text text-danger">{{form.gender.errors}}</small>
+              {% endif %}
+
+              <label for="gender"><strong>Gender</strong></label>
+              {{form.gender}}
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+
+              {% if form.job_location.errors %}
+              <small class="form-text text-danger">{{form.job_location.errors}}</small>
+              {% endif %}
+
+              <label for="address"><strong>Location</strong></label>
+              {{form.job_location}}
+            </div>
+            <div class="col-md-6 mb-3">
+
+              {% if form.application_deadline.errors %}
+              <small class="form-text text-danger">{{form.application_deadline.errors}}</small>
+              {% endif %}
+
+              <label for="application-deadline"><strong>Application deadline</strong></label>
+              {{form.application_deadline}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+
+              {% if form.experience.errors %}
+              <small class="form-text text-danger">{{form.experience.errors}}</small>
+              {% endif %}
+
+              <label for="experience"><strong>Experience</strong></label>
+              {{form.experience}}
+            </div>
+            <div class="col-md-6 mb-3">
+
+              {% if uform.vacancy.errors %}
+              <small class="form-text text-danger">{{uform.vacancy.errors}}</small>
+              {% endif %}
+
+              <label for="vacancy"><strong>Vacancy</strong> <span class="text-muted">(Optional)</span></label>
+              {{form.vacancy}}
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+
+              {% if form.salary.errors %}
+              <small class="form-text text-danger">{{form.salary.errors}}</small>
+              {% endif %}
+
+              <label for="application-deadline"><strong>Salary</strong> <span class="text-muted">(Optional)</span></label>
+              {{form.salary}}
+            </div>
+            <div class="col-md-6 mb-3">
+              {% if form.image.errors %}
+              <small class="form-text text-danger">{{form.image.errors}}</small>
+              {% endif %}
+
+              <div class="form-group">
+                <label for="Image"><strong>Image</strong> <span class="text-muted">(Optional)</span></label>
+                {{form.image}}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+
+              {% if form.responsibilities.errors %}
+              <small class="form-text text-danger">{{form.responsibilities.errors}}</small>
+              {% endif %}
+
+              <label for="responsibility"><strong>Responsibility</strong></label>
+              {{form.responsibilities}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-3">
+
+              {% if form.description.errors %}
+              <small class="form-text text-danger">{{form.description.errors}}</small>
+              {% endif %}
+
+              <label for="description"><strong>Description</strong></label>
+              {{form.description}}
+            </div>
+          </div>
+
+          <hr class="mb-4">
+          {% if not form.instance.pk %}
+          <input type="submit" class="btn btn-primary" value="Submit">
+          {% else %}
+          <input type="submit" class="btn btn-warning" value="Save">
+          {% endif %}
+        </form>
+      </div>
+    </div>
+    <div class="col out">
+
+    </div>
+  </div>
+</div>
+<script>
+  var editor = new MediumEditor('.editable');
+</script>
+<script>
+  var form_fields = document.getElementsByTagName('input')
+  form_fields[1].placeholder = 'Forntend Development..';
+  form_fields[2].placeholder = 'Kalanki,Kathmandu..';
+  form_fields[3].placeholder = '2021-2-30';
+  form_fields[4].placeholder = '3 Years..';
+  form_fields[5].placeholder = '4..';
+  form_fields[6].placeholder = 'Rs.50,000..';
+
+
+
+
+  for (var field in form_fields) {
+    form_fields[field].className += ' form-control'
+  }
+</script>
+{% endblock %}

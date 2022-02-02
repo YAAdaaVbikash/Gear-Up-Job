@@ -1,0 +1,312 @@
+  #description {
+    width: auto;
+    height: 225px;
+    background-color: #C7C6C6;
+    overflow: hidden;
+  }
+
+  #myList .li {
+    display: none;
+  }
+
+  #loadMore {
+    color: green;
+    cursor: pointer;
+  }
+
+  #loadMore:hover {
+    color: black;
+  }
+
+  #showLess {
+    color: red;
+    cursor: pointer;
+    display: none;
+  }
+
+  #showLess:hover {
+    color: black;
+  }
+
+  .col .out {
+    background-color: #ECECEC;
+  }
+
+  .modal-confirm {
+    color: #636363;
+    width: 400px;
+  }
+
+  .modal-confirm .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .modal-confirm .modal-header {
+    border-bottom: none;
+    position: relative;
+  }
+
+  .modal-confirm h4 {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -10px;
+  }
+
+  .modal-confirm .close {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+  }
+
+  .modal-confirm .modal-body {
+    color: #999;
+  }
+
+  .modal-confirm .modal-footer {
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 10px 15px 25px;
+  }
+
+  .modal-confirm .modal-footer a {
+    color: #999;
+  }
+
+  .modal-confirm .icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    z-index: 9;
+    text-align: center;
+    border: 3px solid #f15e5e;
+  }
+
+  .modal-confirm .icon-box i {
+    color: #f15e5e;
+    font-size: 46px;
+    display: inline-block;
+    margin-top: 13px;
+  }
+
+  .modal-confirm .btn, .modal-confirm .btn:active {
+    color: #fff;
+    border-radius: 4px;
+    background: #60c7c1;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    min-width: 120px;
+    border: none;
+    min-height: 40px;
+    border-radius: 3px;
+    margin: 0 5px;
+  }
+
+  .modal-confirm .btn-secondary {
+    background: #c1c1c1;
+  }
+
+  .modal-confirm .btn-secondary:hover, .modal-confirm .btn-secondary:focus {
+    background: #a8a8a8;
+  }
+
+  .modal-confirm .btn-danger {
+    background: #f15e5e;
+  }
+
+  .modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+    background: #ee3535;
+  }
+
+  .trigger-btn {
+    display: inline-block;
+    margin: 100px auto;
+  }
+
+  .dropdown-menu2 {
+    min-width: 8rem;
+    background-color: #9fb59e;
+  }
+
+  .dropdown-item:hover {
+    color: #000000;
+    transition-duration: 0.2s;
+    overflow: hidden;
+    background-color: #e3e3e3;
+  }
+
+  .dropdown-btn {
+    background-color: #9fb59e;
+    color: black;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .my-textarea {
+    border-radius: 25px;
+    border-width: 5px;
+    ;
+    background: #dee0e3;
+    padding: 20px;
+    width: 100%;
+    height: 8rem;
+    padding: 0 60px !important;
+    ;
+    overflow: auto;
+  }
+
+  input[type="Textarea"] {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .my-textarea:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.25);
+  }
+
+  #social {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .smGlobalBtn {
+    /* global button class */
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 2px 2px #999;
+    padding: 0px;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 2em;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+  }
+
+  /* facebook button class*/
+  .facebookBtn {
+    background: #4060A5;
+  }
+
+  .facebookBtn:before {
+    /* use :before to add the relevant icons */
+    font-family: "FontAwesome";
+    content: "\f09a";
+    /* add facebook icon */
+  }
+
+  .facebookBtn:hover {
+    color: #4060A5;
+    background: #fff;
+  }
+
+  /* twitter button class*/
+  .twitterBtn {
+    background: #00ABE3;
+  }
+
+  .twitterBtn:before {
+    font-family: "FontAwesome";
+    content: "\f099";
+    /* add twitter icon */
+  }
+
+  .twitterBtn:hover {
+    color: #00ABE3;
+    background: #fff;
+  }
+
+  /* google plus button class*/
+  .googleplusBtn {
+    background: #e64522;
+  }
+
+  .googleplusBtn:before {
+    font-family: "FontAwesome";
+    content: "\f0d5";
+    /* add googleplus icon */
+  }
+
+  .googleplusBtn:hover {
+    color: #e64522;
+    background: #fff;
+  }
+
+  /* linkedin button class*/
+  .linkedinBtn {
+    background: #0094BC;
+  }
+
+  .linkedinBtn:before {
+    font-family: "FontAwesome";
+    content: "\f0e1";
+    /* add linkedin icon */
+  }
+
+  .linkedinBtn:hover {
+    color: #0094BC;
+    background: #fff;
+  }
+
+  .rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+  }
+  .rating > a {
+    display: inline-block;
+    font-size:2rem;
+    width: 1.1em;
+    text-decoration:none;
+  }
+  .rating > a:hover,
+  .rating > a:hover ~ a {
+    color: transparent;
+  }
+  .rating > a:hover:before,
+  .rating > a:hover ~ a:before {
+     content: "\2605";
+     color: gold;
+  }
+  .company-rating{
+    margin-left: 40px;
+  }
+.star{
+  display: inline-block;
+  font-size:2rem;
+  position: relative;
+  width: 1.1em;
+}
+.yellow{
+  color: gold;
+}
+.my-btn{
+margin-left: 90px;
+margin-top: 10px;
+border: none;
+border-radius: 5px;
+color:blue;
+}
+.my-btn:hover{
+  color:green;
+  cursor: pointer;
+  font-weight: bold;
+}
